@@ -1,16 +1,6 @@
 from sqlalchemy import Column, Integer, String, DateTime, Enum, func
 from database import Base
-import enum
-
-
-class ContractType(enum.Enum):
-    alternance = "alternance"
-    stage = "stage"
-    cdi = "cdi"
-    cdd = "cdd"
-    poeic = "poeic"
-    poec = "poec"
-    freelance = "freelance"
+from models.enum import ContractType
 
 class Offer(Base):
     __tablename__= "offers"
