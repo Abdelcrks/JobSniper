@@ -5,13 +5,15 @@ import models.profile
 import models.project
 import models.skill
 import models.generation
-from routers.offers import router
+from routers.offers import router as offers_router
+from routers.profiles import router as profiles_router
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-app.include_router(router)
+app.include_router(offers_router)
+app.include_router(profiles_router)
 
 @app.get("/")
 def read_root():
