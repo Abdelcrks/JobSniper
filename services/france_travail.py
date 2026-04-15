@@ -16,15 +16,16 @@ def get_token():
     return response.json()["access_token"]
 
 
-def get_offers():
+def get_offers(motsCles: str = "développeur", localisation: str = ""):
     url = "https://api.francetravail.io/partenaire/offresdemploi/v2/offres/search"
+    
+    params = {"motsCles": motsCles}
+    if localisation:
+        params["commune"] = localisation
+
     response = requests.get(url, headers={
         "Authorization": f"Bearer {get_token()}",   
-    },
-    params={
-            "motsCles":"développeur"
-        }
-    )
+    }, params=params)
 
     data = response.json()
     resultats = data.get("resultats", [])
